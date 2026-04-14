@@ -1,0 +1,41 @@
+{
+    "author": "Ed Bowden",
+    "dependencies": {
+        "@moddable/pebbleproxy": "^0.1.7",
+        "@rebble/clay": "^1.0.8"
+    },
+    "keywords": [
+        "pebble-app"
+    ],
+    "name": "purple",
+    "pebble": {
+        "capabilities": [
+            "location",
+            "configurable"
+        ],
+        "displayName": "Purple",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "b_temp",
+            "i_weather_refresh_mins",
+            "c_foreground",
+            "c_background",
+            "c_battery_good",
+            "c_battery_bad",
+            "b_short_date"
+        ],
+        "projectType": "moddable",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "emery"
+        ],
+        "uuid": "da35a4f1-797d-4815-9ff2-bbc89d83e657",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "0.1.0"
+}
