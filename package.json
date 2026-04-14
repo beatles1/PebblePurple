@@ -22,7 +22,8 @@
             "c_foreground",
             "c_background",
             "c_battery_good",
-            "c_battery_bad"
+            "c_battery_bad",
+            "b_date"
         ],
         "projectType": "moddable",
         "resources": {

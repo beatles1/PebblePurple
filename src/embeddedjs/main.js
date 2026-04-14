@@ -36,7 +36,8 @@ const DEFAULT_SETTINGS = {
   c_foreground: [255, 255, 255],
   c_background: [170, 0, 255],
   c_battery_good: [85, 255, 170],
-  c_battery_bad: [170, 0, 0]
+  c_battery_bad: [170, 0, 0],
+  date: true
 };
 
 function loadSettings() {
@@ -171,20 +172,23 @@ function drawScreen() {
     // Format date
     const dayName = DAYS[now.getDay()];
     const monthName = MONTHS[now.getMonth()];
-    let smallStr;
     
-    if (settings.short_date) {
-      smallStr = dayName +" "+ String(now.getDate());
-    } else {
-      smallStr = dayName +" "+ monthName +" "+ String(now.getDate()).padStart(2, "0");
+    let smallStr = "";
+    if (settings.date){
+      if (settings.short_date) {
+        smallStr += dayName +" "+ String(now.getDate());
+      } else {
+        smallStr += dayName +" "+ monthName +" "+ String(now.getDate()).padStart(2, "0");
+      }
     }
     
     // Add temp
     if (settings.temp) {
+      if (smallStr != "") {smallStr += " | "}
       if (temp) {
-        smallStr += " | "+ temp +"°C";
+        smallStr += temp +"°C";
       } else {
-        smallStr += " | .";
+        smallStr += ".";
       }
     }
 
@@ -208,7 +212,7 @@ watch.addEventListener("minutechange", minuteTick);
 
 // Receive 
 const message = new Message({
-    keys: ["b_short_date", "b_temp", "i_weather_refresh_mins", "c_foreground", "c_background", "c_battery_good", "c_battery_bad"],
+    keys: ["b_short_date", "b_temp", "i_weather_refresh_mins", "c_foreground", "c_background", "c_battery_good", "c_battery_bad", "b_date"],
     onReadable() {
         const msg = this.read();
 
@@ -241,6 +245,11 @@ const message = new Message({
         if (temps !== undefined) {
           settings.temp = temps === 1;
           console.log("temp: "+ temps);
+        }
+        const dates = msg.get("b_date");
+        if (dates !== undefined) {
+          settings.date = dates === 1;
+          console.log("date: "+ dates);
         }
         const wrm = msg.get("i_weather_refresh_mins");
         if (wrm !== undefined) {

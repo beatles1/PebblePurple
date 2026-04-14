@@ -67,14 +67,20 @@ module.exports = [
     "items": [
        {
         "type": "heading",
-        "defaultValue": "Misc"
+        "defaultValue": "Date"
+      },
+      {
+        "type": "toggle",
+        "messageKey": "b_date",
+        "label": "Show Date",
+        "defaultValue": true
       },
       {
         "type": "toggle",
         "messageKey": "b_short_date",
-        "label": "Short Date",
+        "label": "Hide Month",
         "defaultValue": true
-      },
+      }
     ]
   },
   {
