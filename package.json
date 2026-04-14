@@ -16,13 +16,13 @@
         "displayName": "Purple",
         "enableMultiJS": true,
         "messageKeys": [
+            "b_short_date",
             "b_temp",
             "i_weather_refresh_mins",
             "c_foreground",
             "c_background",
             "c_battery_good",
-            "c_battery_bad",
-            "b_short_date"
+            "c_battery_bad"
         ],
         "projectType": "moddable",
         "resources": {
