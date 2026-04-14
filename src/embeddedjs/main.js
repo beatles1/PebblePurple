@@ -165,7 +165,7 @@ function drawScreen() {
     // Draw time
     const hour_width = render.getTextWidth(hours, timeFont);
     const min_width = render.getTextWidth(mins, timeFont);
-    render.drawText(hours, timeFont, render.makeColor(255, 0, 0), (render.width - hour_width) / 2, hoursY);
+    render.drawText(hours, timeFont, colours.c_foreground, (render.width - hour_width) / 2, hoursY);
     render.drawText(mins, timeFont, colours.c_foreground, (render.width - min_width) / 2, minsY);
     
     // Format date
