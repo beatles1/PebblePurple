@@ -77,8 +77,6 @@ let lastDate = new Date();
 
 // Weather data
 let temp = null;
-let latitude = null;
-let longitude = null;
 
 // Battery state
 let batteryPercent = 100;
@@ -93,18 +91,21 @@ batteryPercent = battery.sample().percent;
 
 // Weather
 let location = null;
-
 function requestLocation() {
-    if (settings.temp) {
-      location = new Location({
-          onSample() {
-              const sample = this.sample();
-              console.log("Got location: " + sample.latitude + ", " + sample.longitude);
-              this.close();
-              fetchWeather(sample.latitude, sample.longitude);
-          }
-      });
-    }
+  console.log("Location requested");
+  if (settings.temp && !location) {
+    console.log("Location request not in progress, loading");
+    location = new Location({
+      onSample() {
+        console.log("Location loaded");
+        const sample = this.sample();
+        console.log("Got location: " + sample.latitude + ", " + sample.longitude);
+        this.close();
+        fetchWeather(sample.latitude, sample.longitude);
+      }
+    });
+    location.configure({ enableHighAccuracy: false, timeout: 10000, maximumAge: settings.weather_refresh_mins * 60 * 1000 });
+  }
 }
 
 async function fetchWeather(latitude, longitude) {

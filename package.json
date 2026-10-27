@@ -1,8 +1,8 @@
 {
     "author": "Ed Bowden",
     "dependencies": {
-        "@moddable/pebbleproxy": "^0.1.7",
-        "@rebble/clay": "^1.0.8"
+        "@moddable/pebbleproxy": "^0.2.2",
+        "@rebble/clay": "^1.1.0"
     },
     "keywords": [
         "pebble-app"
